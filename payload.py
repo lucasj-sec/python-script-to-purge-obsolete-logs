@@ -13,16 +13,16 @@ def check_disk_usage ():
         print("WARNING: Disk usage is above the limit of {}%".format(limit_use))
         action = input("Do you want to delete old logs? (y/n): ")
         if action.lower() == 'y':
-            erase = time.time() - 7776000 # 3 months in seconds, Junior! 
+            erase = time.time() - 7776000 # 3 months in seconds
             for archive in os.listdir(path_logs):
                 complet_path = os.path.join(path_logs, archive)
                 if os.path.getmtime(complet_path) < erase:
                     os.remove(complet_path)
                     print("Deleted: {}".format(complet_path))
         else:
-            print("Do it yourself, analyst!")
+            print("No action taken. Please monitor disk usage.")
     else:
-        print("You're not coocked else, analyst")
+        print("Not to worry, disk usage is below the limit of {}%".format(limit_use))
 
 if __name__ == "__main__":
     check_disk_usage()
